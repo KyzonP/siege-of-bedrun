@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b0hp6pcup2saq"]
+
+[ext_resource type="Script" uid="uid://djvjuna2iyrxo" path="res://scripts/zombies/zombie.gd" id="1_fsv5w"]
+[ext_resource type="Texture2D" uid="uid://cextqo3ncvury" path="res://assets/placeholder/flagZombie.png" id="2_tjskq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf65r"]
+size = Vector2(30, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_671kg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tjskq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="zombieHandler" type="Area2D" unique_id=485550231]
+collision_layer = 2
+script = ExtResource("1_fsv5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1082151221]
+position = Vector2(-15, 0)
+shape = SubResource("RectangleShape2D_bf65r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=692025416]
+sprite_frames = SubResource("SpriteFrames_671kg")

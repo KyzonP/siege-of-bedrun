@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://qcmq1nepofx4"]
+
+[ext_resource type="PackedScene" uid="uid://bhf3oiv840dff" path="res://scenes/plants/plantHandler.tscn" id="1_uoh7n"]
+[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="2_duwge"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1v48e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_duwge")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="sunflower" type="Node2D" unique_id=1228558274]
+
+[node name="PlantHandler" parent="." unique_id=225491882 instance=ExtResource("1_uoh7n")]
+actionTimeMax = 24.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1207735589]
+sprite_frames = SubResource("SpriteFrames_1v48e")

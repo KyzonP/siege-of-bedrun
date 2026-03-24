@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 event_bus="*uid://btdyiakuyphac"
 
+[layer_names]
+
+2d_physics/layer_1="Plant"
+2d_physics/layer_2="Zombie"
+2d_physics/layer_3="PlantProjectile"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
