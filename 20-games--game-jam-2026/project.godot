@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="20 Games- Game Jam 2026"
+run/main_scene="uid://birg3xqgoyqfx"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+event_bus="*uid://btdyiakuyphac"
 
 [physics]
 

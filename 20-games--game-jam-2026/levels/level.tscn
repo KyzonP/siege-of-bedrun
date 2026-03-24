@@ -1,0 +1,101 @@
+[gd_scene format=4 uid="uid://birg3xqgoyqfx"]
+
+[ext_resource type="Texture2D" uid="uid://jvween0ikm2u" path="res://assets/placeholder/tileFloor.png" id="1_80vhd"]
+[ext_resource type="Script" uid="uid://cdxahu8n3k7c2" path="res://scripts/level.gd" id="1_safpt"]
+[ext_resource type="Script" uid="uid://dthgi8numxhqy" path="res://scripts/map_helper.gd" id="2_hjsbj"]
+[ext_resource type="Script" uid="uid://xl6iga3blh3" path="res://scripts/tile_selector.gd" id="3_5mrsh"]
+[ext_resource type="Texture2D" uid="uid://bcb1ebg7imjwl" path="res://assets/placeholder/frame.png" id="3_cwqvt"]
+[ext_resource type="Texture2D" uid="uid://bf0wb7xlsho4c" path="res://assets/placeholder/peaShooter.png" id="6_gjl0y"]
+[ext_resource type="Script" uid="uid://buar8lc78rc2l" path="res://scripts/plant_buttons_manager.gd" id="6_rtcij"]
+[ext_resource type="Script" uid="uid://cmb8t5dj15nvs" path="res://scripts/buyPlant.gd" id="7_vnv7o"]
+[ext_resource type="PackedScene" uid="uid://bhf3oiv840dff" path="res://scenes/plant.tscn" id="8_d5x7l"]
+[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="10_pb8y7"]
+[ext_resource type="PackedScene" uid="uid://d3sfrqst4exwd" path="res://scenes/plant2.tscn" id="10_ukwr8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjsbj"]
+texture = ExtResource("1_80vhd")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cwqvt"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_hjsbj")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb8y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gjl0y")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_pb8y7")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cwqvt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Level" type="Node2D" unique_id=1897042087]
+script = ExtResource("1_safpt")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=384374040]
+z_index = -1
+tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAADAAMAAAABAAAAAAAEAAQAAAABAAAAAAAFAAUAAAABAAAAAAAGAAYAAAABAAAAAAACAAQAAAABAAAAAAADAAUAAAABAAAAAAACAAYAAAABAAAAAAAEAAYAAAABAAAAAAAFAAMAAAABAAAAAAAEAAIAAAABAAAAAAAKAAIAAAABAAAAAAAJAAMAAAABAAAAAAAIAAIAAAABAAAAAAAHAAMAAAABAAAAAAAGAAIAAAABAAAAAAAGAAQAAAABAAAAAAAHAAUAAAABAAAAAAAIAAQAAAABAAAAAAAIAAYAAAABAAAAAAAJAAUAAAABAAAAAAAKAAQAAAABAAAAAAAKAAYAAAABAAAAAAACAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAYAAAABAAEAAAAFAAYAAAABAAEAAAAHAAYAAAABAAEAAAAJAAYAAAABAAEAAAAJAAQAAAABAAEAAAAHAAQAAAABAAEAAAAFAAQAAAABAAEAAAADAAQAAAABAAEAAAADAAIAAAABAAEAAAAFAAIAAAABAAEAAAAHAAIAAAABAAEAAAAJAAIAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_cwqvt")
+
+[node name="MapHelper" type="Node2D" parent="." unique_id=672532569 node_paths=PackedStringArray("grid")]
+script = ExtResource("2_hjsbj")
+grid = NodePath("../TileMapLayer")
+
+[node name="TileSelector" type="Node2D" parent="." unique_id=439306985]
+script = ExtResource("3_5mrsh")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="TileSelector" unique_id=1265458793]
+modulate = Color(1, 1, 1, 0.53333336)
+sprite_frames = SubResource("SpriteFrames_pb8y7")
+animation = &"2"
+autoplay = "default"
+
+[node name="UI" type="Control" parent="." unique_id=1520684849]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PlantButtons" type="VBoxContainer" parent="UI" unique_id=286256063]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 648.0
+script = ExtResource("6_rtcij")
+
+[node name="PlantButton" type="TextureButton" parent="UI/PlantButtons" unique_id=1890395671]
+layout_mode = 2
+texture_normal = ExtResource("6_gjl0y")
+texture_disabled = ExtResource("3_cwqvt")
+script = ExtResource("7_vnv7o")
+plant = ExtResource("8_d5x7l")
+cost = 100
+id = 1
+
+[node name="PlantButton2" type="TextureButton" parent="UI/PlantButtons" unique_id=209819889]
+layout_mode = 2
+texture_normal = ExtResource("10_pb8y7")
+texture_disabled = ExtResource("3_cwqvt")
+script = ExtResource("7_vnv7o")
+plant = ExtResource("10_ukwr8")
+cost = 50
+id = 2
