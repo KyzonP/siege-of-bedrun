@@ -2,18 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bhf3oiv840dff" path="res://scenes/plants/plantHandler.tscn" id="1_oq8fo"]
 [ext_resource type="Script" uid="uid://c2fckfd2us2qc" path="res://scripts/plants/peashooter.gd" id="1_pk084"]
-[ext_resource type="Texture2D" uid="uid://bf0wb7xlsho4c" path="res://assets/placeholder/peaShooter.png" id="2_pk084"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4l0yo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_pk084")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://bnx2cd0dkn3bu" path="res://scenes/plants/anim/peashooter_anim.tscn" id="3_pk084"]
+[ext_resource type="PackedScene" uid="uid://dbwqxod6si5ck" path="res://scenes/animation_handler.tscn" id="4_4l0yo"]
 
 [node name="Peashooter" type="Node2D" unique_id=737938071]
 script = ExtResource("1_pk084")
@@ -21,5 +11,6 @@ speed = 150.0
 
 [node name="PlantHandler" parent="." unique_id=225491882 instance=ExtResource("1_oq8fo")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=763368913]
-sprite_frames = SubResource("SpriteFrames_4l0yo")
+[node name="animationHandler" parent="." unique_id=563949383 instance=ExtResource("4_4l0yo")]
+anim_scene = ExtResource("3_pk084")
+swarm_size = 15

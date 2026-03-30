@@ -12,7 +12,7 @@ extends Node2D
 var placed_plants : Dictionary = {}
 
 # Variables
-var sunValue = 50
+@export var sunValue = 50
 var sunTimerMax : float = 10.0
 var sunTimer : float = 0.0
 

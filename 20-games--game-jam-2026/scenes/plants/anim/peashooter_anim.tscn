@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://bnx2cd0dkn3bu"]
+
+[ext_resource type="Texture2D" uid="uid://b1xuuf42m7ve7" path="res://assets/sprites/plants/peaShooter.png" id="1_tytst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q06a"]
+atlas = ExtResource("1_tytst")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgqmu"]
+atlas = ExtResource("1_tytst")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb283"]
+atlas = ExtResource("1_tytst")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14fkn"]
+atlas = ExtResource("1_tytst")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwxe8"]
+atlas = ExtResource("1_tytst")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xodao"]
+atlas = ExtResource("1_tytst")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r724x"]
+atlas = ExtResource("1_tytst")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocm1f"]
+atlas = ExtResource("1_tytst")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtehy"]
+atlas = ExtResource("1_tytst")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6swpj"]
+atlas = ExtResource("1_tytst")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rvyc"]
+atlas = ExtResource("1_tytst")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfkdu"]
+atlas = ExtResource("1_tytst")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4l0yo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q06a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgqmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb283")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14fkn")
+}],
+"loop": false,
+"name": &"die",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwxe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xodao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r724x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocm1f")
+}],
+"loop": true,
+"name": &"fight",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtehy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6swpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rvyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfkdu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[node name="peashooter_anim" type="AnimatedSprite2D" unique_id=1304813646]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4l0yo")
+animation = &"walk"
+autoplay = "walk"
+offset = Vector2(0, -8)

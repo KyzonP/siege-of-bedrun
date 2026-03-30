@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dutj6f14bytph"]
+
+[ext_resource type="Texture2D" uid="uid://bj63jmtxnelx3" path="res://assets/sprites/arrow.png" id="1_mt3wo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3m7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mt3wo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="arrow_anim" type="AnimatedSprite2D" unique_id=1181653996]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_q3m7n")

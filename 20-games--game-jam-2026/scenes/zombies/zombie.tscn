@@ -1,25 +1,14 @@
 [gd_scene format=3 uid="uid://jiroega8fulw"]
 
 [ext_resource type="Script" uid="uid://ch3p8vdasyv3f" path="res://scripts/zombies/zombie.gd" id="1_7hnfa"]
-[ext_resource type="Texture2D" uid="uid://cswmpl638pf4e" path="res://assets/placeholder/zombie.png" id="2_7hnfa"]
 [ext_resource type="PackedScene" uid="uid://b0hp6pcup2saq" path="res://scenes/zombies/zombieHandler.tscn" id="3_2prmj"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gqrt2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_7hnfa")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://dbwqxod6si5ck" path="res://scenes/animation_handler.tscn" id="3_7hnfa"]
 
 [node name="Zombie" type="Node2D" unique_id=681887894]
 script = ExtResource("1_7hnfa")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1759408983]
-sprite_frames = SubResource("SpriteFrames_gqrt2")
-
-[node name="zombieHandler" parent="." unique_id=485550231 instance=ExtResource("3_2prmj")]
+[node name="zombieHandler" parent="." unique_id=485550231 groups=["Zombie"] instance=ExtResource("3_2prmj")]
 speed = 25.0
+
+[node name="animationHandler" parent="." unique_id=563949383 instance=ExtResource("3_7hnfa")]
+swarm_size = 25

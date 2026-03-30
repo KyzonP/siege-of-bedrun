@@ -1,0 +1,135 @@
+[gd_scene format=4 uid="uid://g2kxf3kfpisd"]
+
+[ext_resource type="Script" uid="uid://cdxahu8n3k7c2" path="res://scripts/level/level.gd" id="1_3jpcd"]
+[ext_resource type="PackedScene" uid="uid://c03edx4ixhupj" path="res://scenes/sun.tscn" id="2_3cd2m"]
+[ext_resource type="Texture2D" uid="uid://jvween0ikm2u" path="res://assets/placeholder/tileFloor.png" id="3_b6fek"]
+[ext_resource type="Script" uid="uid://dthgi8numxhqy" path="res://scripts/level/map_helper.gd" id="4_hu30b"]
+[ext_resource type="Script" uid="uid://xl6iga3blh3" path="res://scripts/level/tile_selector.gd" id="5_xecap"]
+[ext_resource type="Texture2D" uid="uid://bf0wb7xlsho4c" path="res://assets/placeholder/peaShooter.png" id="6_7qe88"]
+[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="7_8eyef"]
+[ext_resource type="Texture2D" uid="uid://bcb1ebg7imjwl" path="res://assets/placeholder/frame.png" id="8_0245s"]
+[ext_resource type="Script" uid="uid://buar8lc78rc2l" path="res://scripts/level/plant_buttons_manager.gd" id="9_koolm"]
+[ext_resource type="Script" uid="uid://cmb8t5dj15nvs" path="res://scripts/level/plantButton.gd" id="10_6dg7o"]
+[ext_resource type="PackedScene" uid="uid://b0k07mpayuijm" path="res://scenes/plants/peashooter.tscn" id="11_c0wha"]
+[ext_resource type="PackedScene" uid="uid://qcmq1nepofx4" path="res://scenes/plants/sunflower.tscn" id="12_bemvr"]
+[ext_resource type="PackedScene" uid="uid://lpr5u5w2nd6t" path="res://scenes/spawner.tscn" id="13_qp8np"]
+[ext_resource type="Script" uid="uid://ckrj53w0ayybe" path="res://resources/level_data.gd" id="14_hu30b"]
+[ext_resource type="Script" uid="uid://n7ui2ib7j2bj" path="res://resources/wave_data.gd" id="15_xecap"]
+[ext_resource type="Script" uid="uid://dngrw1lb64esy" path="res://resources/enemy_sequence.gd" id="16_7qe88"]
+[ext_resource type="PackedScene" uid="uid://jiroega8fulw" path="res://scenes/zombies/zombie.tscn" id="17_8eyef"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjsbj"]
+texture = ExtResource("3_b6fek")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_cwqvt"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_hjsbj")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb8y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7qe88")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_8eyef")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0245s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_0245s"]
+script = ExtResource("16_7qe88")
+zombie_type = ExtResource("17_8eyef")
+amount = 10
+metadata/_custom_type_script = "uid://dngrw1lb64esy"
+
+[sub_resource type="Resource" id="Resource_koolm"]
+script = ExtResource("15_xecap")
+sequences = Array[ExtResource("16_7qe88")]([SubResource("Resource_0245s"), SubResource("Resource_0245s"), SubResource("Resource_0245s")])
+metadata/_custom_type_script = "uid://n7ui2ib7j2bj"
+
+[sub_resource type="Resource" id="Resource_6dg7o"]
+script = ExtResource("14_hu30b")
+waves = Array[ExtResource("15_xecap")]([SubResource("Resource_koolm")])
+metadata/_custom_type_script = "uid://ckrj53w0ayybe"
+
+[node name="Level" type="Node2D" unique_id=1897042087]
+script = ExtResource("1_3jpcd")
+sunScene = ExtResource("2_3cd2m")
+sunValue = 5000
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=384374040]
+z_index = -1
+tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAADAAMAAAABAAAAAAAEAAQAAAABAAAAAAAFAAUAAAABAAAAAAAGAAYAAAABAAAAAAACAAQAAAABAAAAAAADAAUAAAABAAAAAAACAAYAAAABAAAAAAAEAAYAAAABAAAAAAAFAAMAAAABAAAAAAAEAAIAAAABAAAAAAAKAAIAAAABAAAAAAAJAAMAAAABAAAAAAAIAAIAAAABAAAAAAAHAAMAAAABAAAAAAAGAAIAAAABAAAAAAAGAAQAAAABAAAAAAAHAAUAAAABAAAAAAAIAAQAAAABAAAAAAAIAAYAAAABAAAAAAAJAAUAAAABAAAAAAAKAAQAAAABAAAAAAAKAAYAAAABAAAAAAACAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAYAAAABAAEAAAAFAAYAAAABAAEAAAAHAAYAAAABAAEAAAAJAAYAAAABAAEAAAAJAAQAAAABAAEAAAAHAAQAAAABAAEAAAAFAAQAAAABAAEAAAADAAQAAAABAAEAAAADAAIAAAABAAEAAAAFAAIAAAABAAEAAAAHAAIAAAABAAEAAAAJAAIAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_cwqvt")
+
+[node name="MapHelper" type="Node2D" parent="." unique_id=672532569 node_paths=PackedStringArray("grid")]
+script = ExtResource("4_hu30b")
+grid = NodePath("../TileMapLayer")
+
+[node name="TileSelector" type="Node2D" parent="." unique_id=439306985]
+script = ExtResource("5_xecap")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="TileSelector" unique_id=1265458793]
+modulate = Color(1, 1, 1, 0.53333336)
+sprite_frames = SubResource("SpriteFrames_pb8y7")
+autoplay = "default"
+
+[node name="UI" type="Control" parent="." unique_id=1520684849]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PlantButtons" type="VBoxContainer" parent="UI" unique_id=286256063]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 648.0
+mouse_filter = 2
+script = ExtResource("9_koolm")
+
+[node name="PeashooterButton" type="TextureButton" parent="UI/PlantButtons" unique_id=1890395671]
+layout_mode = 2
+texture_normal = ExtResource("6_7qe88")
+texture_disabled = ExtResource("8_0245s")
+script = ExtResource("10_6dg7o")
+plant = ExtResource("11_c0wha")
+cost = 100
+id = 1
+
+[node name="SunflowerButton" type="TextureButton" parent="UI/PlantButtons" unique_id=209819889]
+layout_mode = 2
+texture_normal = ExtResource("7_8eyef")
+texture_disabled = ExtResource("8_0245s")
+script = ExtResource("10_6dg7o")
+plant = ExtResource("12_bemvr")
+cost = 50
+id = 2
+
+[node name="SunAmount" type="RichTextLabel" parent="." unique_id=738446653]
+offset_right = 1153.0
+offset_bottom = 40.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Mana: 50"
+
+[node name="Spawner" parent="." unique_id=388092202 instance=ExtResource("13_qp8np")]
+level_config = SubResource("Resource_6dg7o")

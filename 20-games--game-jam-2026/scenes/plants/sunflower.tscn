@@ -3,18 +3,8 @@
 [ext_resource type="Script" uid="uid://b1ltwphjme0m0" path="res://scripts/plants/sunflower.gd" id="1_duwge"]
 [ext_resource type="PackedScene" uid="uid://bhf3oiv840dff" path="res://scenes/plants/plantHandler.tscn" id="1_uoh7n"]
 [ext_resource type="PackedScene" uid="uid://c03edx4ixhupj" path="res://scenes/sun.tscn" id="2_1v48e"]
-[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="2_duwge"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1v48e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_duwge")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://lwjvmihswnfd" path="res://scenes/plants/anim/sunflower_anim.tscn" id="4_wg0ja"]
+[ext_resource type="PackedScene" uid="uid://dbwqxod6si5ck" path="res://scenes/animation_handler.tscn" id="5_mtwp4"]
 
 [node name="sunflower" type="Node2D" unique_id=1228558274]
 script = ExtResource("1_duwge")
@@ -23,5 +13,6 @@ sunScene = ExtResource("2_1v48e")
 [node name="PlantHandler" parent="." unique_id=225491882 instance=ExtResource("1_uoh7n")]
 actionTimeMax = 24.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1207735589]
-sprite_frames = SubResource("SpriteFrames_1v48e")
+[node name="animationHandler" parent="." unique_id=563949383 instance=ExtResource("5_mtwp4")]
+anim_scene = ExtResource("4_wg0ja")
+swarm_size = 25

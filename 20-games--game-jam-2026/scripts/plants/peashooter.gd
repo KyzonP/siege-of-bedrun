@@ -19,3 +19,12 @@ func action():
 func destroy():
 	emit_signal("plantDestroyed")
 	self.queue_free()
+
+func collide():
+	$animationHandler.pile_in(28)
+
+func endCollide():
+	$animationHandler.end_pile_in()
+	
+func plantHurt(hp, maxHp):
+	$animationHandler.sync_swarm_to_health(hp, maxHp)

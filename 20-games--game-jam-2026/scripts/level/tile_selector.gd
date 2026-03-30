@@ -9,7 +9,7 @@ signal placePlant
 func _physics_process(_delta):
 	emit_signal("gridSnap", self, get_global_mouse_position())
 	
-func _input(event):
+func _input(_event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		emit_signal("gridSnap", self, get_global_mouse_position())
 		_tryPlacePlant(global_position)

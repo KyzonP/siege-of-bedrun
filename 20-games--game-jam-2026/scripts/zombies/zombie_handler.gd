@@ -14,11 +14,17 @@ var state : States = States.MOVING
 signal destroy
 signal plantCollision
 signal plantEaten
+signal zombieHurt
 
 enum States {MOVING, EATING}
 
 func _ready():
+	add_to_group("Zombie")
+	event_bus.emit_signal("zombieSpawned", self)
+	
 	area_entered.connect(collision)
+	
+	get_parent().zombieHandler = self
 	
 	hp = maxHp
 	
@@ -28,6 +34,8 @@ func _ready():
 		plantCollision.connect(get_parent().plantCollision)
 	if "plantEaten" in get_parent():
 		plantEaten.connect(get_parent().plantEaten)
+	if "zombieHurt" in get_parent():
+		zombieHurt.connect(get_parent().zombieHurt)
 
 func _physics_process(delta):
 	if state == States.MOVING:
@@ -41,15 +49,18 @@ func _physics_process(delta):
 			else:
 				collisionEnd()
 	
-func hurt(damage):
-	hp = hp - damage
+func hurt(enemyDamage):
+	hp = hp - enemyDamage
+	emit_signal("zombieHurt", hp, maxHp)
 	if hp <= 0:
 		hp = 0
+		if target != null:
+			target.endCollide()
 		emit_signal("destroy")
 
 func collision(body):
 	emit_signal("plantCollision", body, self)
 	
-func collisionEnd(body : Area2D = null):
+func collisionEnd(_body : Area2D = null):
 	emit_signal("plantEaten", target, self)
 	print("Done eating")

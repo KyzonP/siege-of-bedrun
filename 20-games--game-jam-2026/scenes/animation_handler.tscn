@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dbwqxod6si5ck"]
+
+[ext_resource type="Script" uid="uid://4y7t7f761t0b" path="res://scripts/animation_handler.gd" id="1_8bppn"]
+[ext_resource type="PackedScene" uid="uid://cxxo1p1cxpiqt" path="res://scenes/zombies/anim/zombie_anim.tscn" id="2_gr1do"]
+
+[node name="animationHandler" type="Node2D" unique_id=563949383]
+y_sort_enabled = true
+script = ExtResource("1_8bppn")
+anim_scene = ExtResource("2_gr1do")

@@ -12,6 +12,12 @@ var hp : int = 100
 signal plantDestroyed
 # When enough time elapses for the plants action to occur
 signal action
+# If collided with
+signal collision
+# If collision ended
+signal endCollision
+# Plant gets hurt
+signal plantHurt
 
 func _ready():
 	hp = maxHp
@@ -20,6 +26,12 @@ func _ready():
 		action.connect(get_parent().action)
 	if "destroy" in get_parent():
 		plantDestroyed.connect(get_parent().destroy)
+	if "collide" in get_parent():
+		collision.connect(get_parent().collide)
+	if "endCollide" in get_parent():
+		endCollision.connect(get_parent().endCollide)
+	if "plantHurt" in get_parent():
+		plantHurt.connect(get_parent().plantHurt)
 
 func remove():
 	emit_signal("plantDestroyed")
@@ -34,6 +46,13 @@ func _physics_process(delta):
 		
 func hurtPlant(damage):
 	hp = hp - damage
+	emit_signal("plantHurt", hp, maxHp)
 	if hp <= 0:
 		hp = 0
 		remove()
+		
+func collide():
+	emit_signal("collision")
+
+func endCollide():
+	emit_signal("endCollision")

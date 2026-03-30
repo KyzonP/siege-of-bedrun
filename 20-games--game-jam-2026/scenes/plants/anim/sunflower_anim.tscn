@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://lwjvmihswnfd"]
+
+[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="1_jxp8e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1v48e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jxp8e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="sunflower_anim" type="AnimatedSprite2D" unique_id=304476092]
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_1v48e")

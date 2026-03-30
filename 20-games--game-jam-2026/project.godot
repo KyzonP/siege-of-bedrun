@@ -25,6 +25,7 @@ event_bus="*uid://btdyiakuyphac"
 2d_physics/layer_2="Zombie"
 2d_physics/layer_3="PlantProjectile"
 2d_physics/layer_4="FallingSun"
+2d_physics/layer_5="ZombieProjectileTrigger"
 
 [physics]
 
