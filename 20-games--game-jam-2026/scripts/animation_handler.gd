@@ -6,6 +6,7 @@ extends Node2D
 @export var bob_speed = 1.0
 @export var stateSwitchTime : float = 1.5
 @export var halfDefend : bool = false
+@export var vanishDelay : float = 2.0
 
 var unit_positions : Array = []
 var current_center_x = 0.0
@@ -111,5 +112,5 @@ func _kill_one_random_unit():
 		
 	# Clean up after a delay
 	var t = victim.create_tween()
-	t.tween_property(victim, "modulate:a", 0, 1.0).set_delay(2.0)
+	t.tween_property(victim, "modulate:a", 0, 1.0).set_delay(vanishDelay)
 	t.finished.connect(victim.queue_free)

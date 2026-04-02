@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bnx2cd0dkn3bu"]
 
 [ext_resource type="Texture2D" uid="uid://b1xuuf42m7ve7" path="res://assets/sprites/plants/peaShooter.png" id="1_tytst"]
+[ext_resource type="PackedScene" uid="uid://b4bpfexmpuaf3" path="res://scenes/shadow.tscn" id="2_4q06a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwxe8"]
 atlas = ExtResource("1_tytst")
@@ -105,8 +106,12 @@ animations = [{
 }]
 
 [node name="peashooter_anim" type="AnimatedSprite2D" unique_id=1304813646]
+y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4l0yo")
-animation = &"attack"
+animation = &"walk"
 autoplay = "walk"
 offset = Vector2(0, -8)
+
+[node name="Shadow" parent="." unique_id=2026465482 instance=ExtResource("2_4q06a")]
+position = Vector2(-5, 0)

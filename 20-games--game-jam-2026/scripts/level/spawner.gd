@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var level_config : LevelData
+@export var level : int = 0
 var current_wave_index : int = 0
 
 func _ready():
@@ -34,8 +35,19 @@ func spawn_wave():
 	
 func spawn_zombie(type: PackedScene):
 	var zombie = type.instantiate()
-	# Randomly pick a lane
-	var lane = randi_range(0,4)
+	# Randomly pick a lane (within the level range)
+	var min_lane = 0
+	var max_lane = 4
+	
+	if level == 1:
+		min_lane = 2
+		max_lane = 2
+	elif level < 4:
+			min_lane = 1
+			max_lane = 3
+	
+	
+	var lane = randi_range(min_lane,max_lane)
 	zombie.global_position = Vector2(867, 160 + (lane * 64))
 	#zombie.global_position = Vector2(767, 160 + (lane * 64))
 	get_parent().add_child(zombie)

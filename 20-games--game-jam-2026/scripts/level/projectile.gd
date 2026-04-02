@@ -67,11 +67,11 @@ func calculate_intercept(target_zombie):
 		#Place they will meet
 		intercept_x = global_position.x + (speed * travel_time)
 		
-
 	else:
 		var default_distance = 512.0
 		travel_time = default_distance / speed
 		intercept_x = global_position.x + default_distance
+		print("No target")
 		
 	if target_zombie != target:
 		var distance_to_target = abs(intercept_x - global_position.x)

@@ -3,20 +3,23 @@
 [ext_resource type="Script" uid="uid://cdxahu8n3k7c2" path="res://scripts/level/level.gd" id="1_3jpcd"]
 [ext_resource type="PackedScene" uid="uid://c03edx4ixhupj" path="res://scenes/sun.tscn" id="2_3cd2m"]
 [ext_resource type="Texture2D" uid="uid://jvween0ikm2u" path="res://assets/placeholder/tileFloor.png" id="3_b6fek"]
+[ext_resource type="Texture2D" uid="uid://dnyb2yhdwmkby" path="res://assets/Tiles.png" id="4_8eyef"]
 [ext_resource type="Script" uid="uid://dthgi8numxhqy" path="res://scripts/level/map_helper.gd" id="4_hu30b"]
 [ext_resource type="Script" uid="uid://xl6iga3blh3" path="res://scripts/level/tile_selector.gd" id="5_xecap"]
-[ext_resource type="Texture2D" uid="uid://bf0wb7xlsho4c" path="res://assets/placeholder/peaShooter.png" id="6_7qe88"]
-[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="7_8eyef"]
+[ext_resource type="Texture2D" uid="uid://cxiwxvj8g7d4b" path="res://assets/ui/buttons/PeaShooter.png" id="6_7qe88"]
+[ext_resource type="Texture2D" uid="uid://mrnn0yrrugm5" path="res://assets/ui/buttons/Sunflower.png" id="7_0245s"]
 [ext_resource type="Texture2D" uid="uid://bcb1ebg7imjwl" path="res://assets/placeholder/frame.png" id="8_0245s"]
+[ext_resource type="Texture2D" uid="uid://dfpk75a7xxb7v" path="res://assets/ui/ui.png" id="9_c0wha"]
 [ext_resource type="Script" uid="uid://buar8lc78rc2l" path="res://scripts/level/plant_buttons_manager.gd" id="9_koolm"]
-[ext_resource type="Script" uid="uid://cmb8t5dj15nvs" path="res://scripts/level/plantButton.gd" id="10_6dg7o"]
-[ext_resource type="PackedScene" uid="uid://b0k07mpayuijm" path="res://scenes/plants/peashooter.tscn" id="11_c0wha"]
-[ext_resource type="PackedScene" uid="uid://qcmq1nepofx4" path="res://scenes/plants/sunflower.tscn" id="12_bemvr"]
+[ext_resource type="PackedScene" uid="uid://du7r7t7dmghu2" path="res://scenes/buttons/peashooter_button.tscn" id="11_7qe88"]
+[ext_resource type="PackedScene" uid="uid://usb4tfb1cphe" path="res://scenes/buttons/sunflower_button.tscn" id="12_8eyef"]
 [ext_resource type="PackedScene" uid="uid://lpr5u5w2nd6t" path="res://scenes/spawner.tscn" id="13_qp8np"]
 [ext_resource type="Script" uid="uid://ckrj53w0ayybe" path="res://resources/level_data.gd" id="14_hu30b"]
 [ext_resource type="Script" uid="uid://n7ui2ib7j2bj" path="res://resources/wave_data.gd" id="15_xecap"]
 [ext_resource type="Script" uid="uid://dngrw1lb64esy" path="res://resources/enemy_sequence.gd" id="16_7qe88"]
 [ext_resource type="PackedScene" uid="uid://jiroega8fulw" path="res://scenes/zombies/zombie.tscn" id="17_8eyef"]
+[ext_resource type="FontFile" uid="uid://ph0hpn5ch2yb" path="res://assets/fonts/PrStart.ttf" id="17_koolm"]
+[ext_resource type="PackedScene" uid="uid://dbwqxod6si5ck" path="res://scenes/animation_handler.tscn" id="23_6dg7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjsbj"]
 texture = ExtResource("3_b6fek")
@@ -26,9 +29,15 @@ texture_region_size = Vector2i(64, 64)
 0:1/0 = 0
 1:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0245s"]
+texture = ExtResource("4_8eyef")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_cwqvt"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_hjsbj")
+sources/1 = SubResource("TileSetAtlasSource_0245s")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pb8y7"]
 animations = [{
@@ -42,7 +51,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_8eyef")
+"texture": ExtResource("7_0245s")
 }],
 "loop": true,
 "name": &"2",
@@ -80,7 +89,8 @@ sunValue = 5000
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=384374040]
 z_index = -1
-tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAADAAMAAAABAAAAAAAEAAQAAAABAAAAAAAFAAUAAAABAAAAAAAGAAYAAAABAAAAAAACAAQAAAABAAAAAAADAAUAAAABAAAAAAACAAYAAAABAAAAAAAEAAYAAAABAAAAAAAFAAMAAAABAAAAAAAEAAIAAAABAAAAAAAKAAIAAAABAAAAAAAJAAMAAAABAAAAAAAIAAIAAAABAAAAAAAHAAMAAAABAAAAAAAGAAIAAAABAAAAAAAGAAQAAAABAAAAAAAHAAUAAAABAAAAAAAIAAQAAAABAAAAAAAIAAYAAAABAAAAAAAJAAUAAAABAAAAAAAKAAQAAAABAAAAAAAKAAYAAAABAAAAAAACAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAYAAAABAAEAAAAFAAYAAAABAAEAAAAHAAYAAAABAAEAAAAJAAYAAAABAAEAAAAJAAQAAAABAAEAAAAHAAQAAAABAAEAAAAFAAQAAAABAAEAAAADAAQAAAABAAEAAAADAAIAAAABAAEAAAAFAAIAAAABAAEAAAAHAAIAAAABAAEAAAAJAAIAAAABAAEAAAA=")
+texture_filter = 1
+tile_map_data = PackedByteArray("AAACAAIAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAUAAQAAAAAAAAAGAAYAAQAAAAAAAAACAAQAAQAAAAAAAAADAAUAAQAAAAAAAAACAAYAAQAAAAAAAAAEAAYAAQAAAAAAAAAFAAMAAQAAAAAAAAAEAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAAJAAMAAQAAAAAAAAAIAAIAAQAAAAAAAAAHAAMAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAQAAQAAAAAAAAAIAAYAAQAAAAAAAAAJAAUAAQAAAAAAAAAKAAQAAQAAAAAAAAAKAAYAAQAAAAAAAAACAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAGAAMAAQAAAAAAAAAIAAMAAQAAAAAAAAAKAAMAAQAAAAAAAAAKAAUAAQAAAAAAAAAIAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAACAAUAAQAAAAAAAAADAAYAAQAAAAAAAAAFAAYAAQAAAAAAAAAHAAYAAQAAAAAAAAAJAAYAAQAAAAAAAAAJAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAADAAQAAQAAAAAAAAADAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_cwqvt")
 
 [node name="MapHelper" type="Node2D" parent="." unique_id=672532569 node_paths=PackedStringArray("grid")]
@@ -93,51 +103,97 @@ script = ExtResource("5_xecap")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="TileSelector" unique_id=1265458793]
 modulate = Color(1, 1, 1, 0.53333336)
 sprite_frames = SubResource("SpriteFrames_pb8y7")
+animation = &"2"
 autoplay = "default"
 
 [node name="UI" type="Control" parent="." unique_id=1520684849]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="PlantButtons" type="VBoxContainer" parent="UI" unique_id=286256063]
+[node name="UI" type="TextureRect" parent="UI" unique_id=382718319]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 73.0
-offset_right = 96.0
-offset_bottom = 505.0
+offset_top = 34.0
+offset_right = 511.0
+offset_bottom = 130.0
 mouse_filter = 2
+texture = ExtResource("9_c0wha")
+
+[node name="PlantButtons" type="HBoxContainer" parent="UI" unique_id=1950829029]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 42.0
+offset_right = 428.0
+offset_bottom = 126.0
+mouse_filter = 2
+theme_override_constants/separation = -14
+alignment = 1
 script = ExtResource("9_koolm")
 
-[node name="PeashooterButton" type="TextureButton" parent="UI/PlantButtons" unique_id=1890395671]
+[node name="PeashooterButton" parent="UI/PlantButtons" unique_id=1140620932 instance=ExtResource("11_7qe88")]
 layout_mode = 2
-texture_normal = ExtResource("6_7qe88")
-texture_disabled = ExtResource("8_0245s")
-script = ExtResource("10_6dg7o")
-plant = ExtResource("11_c0wha")
-cost = 100
-id = 1
 
-[node name="SunflowerButton" type="TextureButton" parent="UI/PlantButtons" unique_id=209819889]
+[node name="SunflowerButton" parent="UI/PlantButtons" unique_id=1460333919 instance=ExtResource("12_8eyef")]
 layout_mode = 2
-texture_normal = ExtResource("7_8eyef")
-texture_disabled = ExtResource("8_0245s")
-script = ExtResource("10_6dg7o")
-plant = ExtResource("12_bemvr")
-cost = 50
-id = 2
 
 [node name="SunAmount" type="RichTextLabel" parent="." unique_id=738446653]
-offset_left = 31.0
-offset_top = 73.0
-offset_right = 799.0
-offset_bottom = 137.0
+offset_left = 34.0
+offset_top = 93.0
+offset_right = 108.0
+offset_bottom = 127.0
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("17_koolm")
 bbcode_enabled = true
-text = "[center]Mana: 50"
+text = "[center]50"
 
 [node name="Spawner" parent="." unique_id=388092202 instance=ExtResource("13_qp8np")]
 level_config = SubResource("Resource_6dg7o")
+level = 5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1216869478]
-position = Vector2(415, 289)
+position = Vector2(415, 250)
 zoom = Vector2(1.5, 1.5)
+
+[node name="Test" type="Node2D" parent="." unique_id=1483849238]
+
+[node name="animationHandler" parent="Test" unique_id=563949383 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 46)
+
+[node name="animationHandler2" parent="Test" unique_id=987992847 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 110)
+
+[node name="animationHandler3" parent="Test" unique_id=1498020753 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 174)
+
+[node name="animationHandler4" parent="Test" unique_id=1084692848 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 238)
+
+[node name="animationHandler5" parent="Test" unique_id=2043737861 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 302)
+
+[node name="animationHandler6" parent="Test" unique_id=1913597406 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 366)
+
+[node name="animationHandler7" parent="Test" unique_id=130865899 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 430)
+
+[node name="animationHandler8" parent="Test" unique_id=186911286 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 75)
+
+[node name="animationHandler9" parent="Test" unique_id=1351792400 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 139)
+
+[node name="animationHandler10" parent="Test" unique_id=132453822 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 203)
+
+[node name="animationHandler11" parent="Test" unique_id=618487554 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 267)
+
+[node name="animationHandler12" parent="Test" unique_id=1959996682 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 331)
+
+[node name="animationHandler13" parent="Test" unique_id=1292705696 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 395)
+
+[node name="animationHandler14" parent="Test" unique_id=1613633149 instance=ExtResource("23_6dg7o")]
+position = Vector2(900, 459)

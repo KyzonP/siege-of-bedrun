@@ -1,10 +1,14 @@
 extends Node2D
 
 @export var arrow_scene : PackedScene
+@export var shadow_scene : PackedScene
 @export var swarm_size : int = 5
 @export var arc_height : float = -60.0 # Peak of the arc
 
 var unit_positions : Array = []
+var arrows : Array = []
+var shadows : Array = []
+
 var elapsed_time : float = 0.0
 var current_travel_time : float = 1.0
 
@@ -17,6 +21,12 @@ func _ready():
 		var ry = randi_range(-15,15)
 		unit_positions.append(Vector2(rx,ry))
 		arrow.position = Vector2(rx,ry)
+		arrows.append(arrow)
+		
+		var shadow = shadow_scene.instantiate()
+		add_child(shadow)
+		shadow.position = Vector2(rx,ry+6)
+		shadows.append(shadow)
 		
 func _physics_process(delta):
 	elapsed_time += delta
@@ -28,15 +38,22 @@ func _physics_process(delta):
 	# Math for fake height
 	var arc_y = 4 * arc_height * progress * (1.0-progress)
 	
-	var children = get_children()
-	for i in range(min(children.size(), unit_positions.size())):
-		var child = children[i]
-		if child is AnimatedSprite2D:
-			# Apply arc to y offset
-			child.position.y = unit_positions[i].y + arc_y
+	for i in range(arrows.size()):
+		var arrow = arrows[i]
+		var shadow = shadows[i]
+		var base_pos = unit_positions[i]
+		
+		arrow.position.y = base_pos.y + arc_y
 			
 			# Rotate to face trajectory
-			child.rotation = lerp(-0.8,0.8, progress)
+		arrow.rotation = lerp(-0.8,0.8, progress)
+		
+		# Shadow
+		shadow.position.y = base_pos.y
+		shadow.rotation = arrow.rotation
+		
+		var s = lerp(1.0, 0.7, abs(arc_y) / abs(arc_height))
+		shadow.scale = Vector2(s, s)
 			
 	if progress >= 1.0:
 		finish_and_cleanup()

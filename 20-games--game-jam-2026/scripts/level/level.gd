@@ -3,7 +3,8 @@ extends Node2D
 ### Have a node/signal for accessing MapHelper ###
 @onready var mapHelper : Node2D = $MapHelper
 @onready var tileSelector : Node2D = $TileSelector
-@onready var plantButtons : VBoxContainer = $UI/PlantButtons
+@onready var plantButtons : HBoxContainer = $UI/PlantButtons
+var camera : Camera2D
 
 # Packed scenes
 @export var sunScene : PackedScene
@@ -17,6 +18,9 @@ var sunTimerMax : float = 10.0
 var sunTimer : float = 0.0
 
 func _ready():
+	# Grab camera
+	camera = get_parent().get_viewport().get_camera_2d()
+	
 	# Connect signals #
 	tileSelector.gridSnap.connect(gridSnap)
 	tileSelector.placePlant.connect(place_plant)
@@ -93,15 +97,22 @@ func _spawnSun():
 	var sunInst = sunScene.instantiate()
 	add_child(sunInst)
 	
-	var random_x = randf() * get_viewport_rect().size.x
-	sunInst.global_position = Vector2(random_x, 10)
+	# Determine visible area
+	var screen_center = camera.get_screen_center_position()
+	var viewport_size = get_viewport_rect().size / camera.zoom
+	
+	var left_bound = screen_center.x - (viewport_size.x / 2)
+	var right_bound = screen_center.x + (viewport_size.x / 2)
+	var top_bound = screen_center.y - (viewport_size.y / 2)
+	
+	var random_x = randf_range(left_bound, right_bound)
+	sunInst.global_position = Vector2(random_x, top_bound + 10)
 	sunInst.fall = true
 	sunInst.clicked.connect(sunIncrease)
 	
 func sunIncrease(value):
-	print("click")
 	sunValue = sunValue + value
 	updateUI()
 	
 func updateUI():
-	$SunAmount.text = "[center]Mana: " + str(sunValue)
+	$SunAmount.text = "[center]" + str(sunValue)

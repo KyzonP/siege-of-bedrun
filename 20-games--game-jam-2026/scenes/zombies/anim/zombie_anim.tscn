@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cxxo1p1cxpiqt"]
 
 [ext_resource type="Texture2D" uid="uid://djh12py7mmo3i" path="res://assets/sprites/zombies/basicZombie.png" id="1_rg3lc"]
+[ext_resource type="PackedScene" uid="uid://b4bpfexmpuaf3" path="res://scenes/shadow.tscn" id="2_xuhoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_436op"]
 atlas = ExtResource("1_rg3lc")
@@ -111,3 +112,6 @@ sprite_frames = SubResource("SpriteFrames_gqrt2")
 animation = &"die"
 autoplay = "walk"
 offset = Vector2(-4, -8)
+
+[node name="Shadow" parent="." unique_id=2026465482 instance=ExtResource("2_xuhoq")]
+position = Vector2(0, -1)

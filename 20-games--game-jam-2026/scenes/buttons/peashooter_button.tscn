@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://du7r7t7dmghu2"]
+
+[ext_resource type="Texture2D" uid="uid://bapmdfixrnr3j" path="res://assets/ui/buttons/PeaShooterButton.png" id="1_v4n2k"]
+[ext_resource type="Texture2D" uid="uid://chbl2ry7jr8ii" path="res://assets/ui/buttons/PeaShooterButtonDisabled.png" id="2_jxe3k"]
+[ext_resource type="Script" uid="uid://cmb8t5dj15nvs" path="res://scripts/level/plantButton.gd" id="3_7xjg7"]
+[ext_resource type="PackedScene" uid="uid://b0k07mpayuijm" path="res://scenes/plants/peashooter.tscn" id="4_t4x50"]
+[ext_resource type="FontFile" uid="uid://ph0hpn5ch2yb" path="res://assets/fonts/PrStart.ttf" id="5_ivyax"]
+
+[node name="PeashooterButton" type="TextureButton" unique_id=1140620932]
+texture_filter = 1
+texture_normal = ExtResource("1_v4n2k")
+texture_disabled = ExtResource("2_jxe3k")
+script = ExtResource("3_7xjg7")
+plant = ExtResource("4_t4x50")
+plantName = "Archer"
+cost = 100
+id = 1
+
+[node name="Name" type="RichTextLabel" parent="." unique_id=962579024]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 9.0
+offset_right = 49.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_ivyax")
+theme_override_font_sizes/normal_font_size = 4
+bbcode_enabled = true
+text = "[center]Archer"
+
+[node name="Cost" type="RichTextLabel" parent="." unique_id=1626604027]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 50.0
+offset_right = 41.0
+offset_bottom = 62.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_ivyax")
+theme_override_font_sizes/normal_font_size = 4
+bbcode_enabled = true
+text = "[center]100"

@@ -1,19 +1,117 @@
 [gd_scene format=3 uid="uid://lwjvmihswnfd"]
 
-[ext_resource type="Texture2D" uid="uid://desvi0cfn55d6" path="res://assets/placeholder/sunFlower.png" id="1_jxp8e"]
+[ext_resource type="Texture2D" uid="uid://bgak4nm6rr4m8" path="res://assets/sprites/plants/sunflower.png" id="1_jxp8e"]
+[ext_resource type="PackedScene" uid="uid://b4bpfexmpuaf3" path="res://scenes/shadow.tscn" id="2_m8g2h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8g2h"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0kl2"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhor2"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty2an"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sp62"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yog56"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq2qq"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka116"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50n85"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hihcy"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opea0"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v74me"]
+atlas = ExtResource("1_jxp8e")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1v48e"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_jxp8e")
+"texture": SubResource("AtlasTexture_m8g2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0kl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhor2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty2an")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sp62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yog56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq2qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka116")
+}],
+"loop": false,
+"name": &"die",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50n85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hihcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opea0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v74me")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
 }]
 
 [node name="sunflower_anim" type="AnimatedSprite2D" unique_id=304476092]
+y_sort_enabled = true
 texture_filter = 1
-scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_1v48e")
+animation = &"walk"
+autoplay = "walk"
+offset = Vector2(0, -8)
+
+[node name="Shadow" parent="." unique_id=2026465482 instance=ExtResource("2_m8g2h")]
+position = Vector2(-5, 0)

@@ -14,3 +14,5 @@ speed = 150.0
 [node name="animationHandler" parent="." unique_id=563949383 instance=ExtResource("4_4l0yo")]
 anim_scene = ExtResource("3_pk084")
 swarm_size = 15
+bob_strength = 1.0
+bob_speed = 0.5

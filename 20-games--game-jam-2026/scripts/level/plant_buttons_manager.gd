@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 var currentPlant : PackedScene
 var sunCost : int

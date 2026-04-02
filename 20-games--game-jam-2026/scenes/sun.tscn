@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://c03edx4ixhupj"]
 
-[ext_resource type="Texture2D" uid="uid://ur2lxwee4f56" path="res://assets/placeholder/sun.png" id="1_cojbh"]
 [ext_resource type="Script" uid="uid://vistp80ll3nd" path="res://scripts/sun.gd" id="1_fdjia"]
+[ext_resource type="Texture2D" uid="uid://5oc17hgvbhjx" path="res://assets/sprites/sun.png" id="2_fdjia"]
+[ext_resource type="Texture2D" uid="uid://b74rb61q80ic4" path="res://assets/textures/light.png" id="3_6gpmc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fdjia"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_cojbh")
+"texture": ExtResource("2_fdjia")
 }],
 "loop": true,
 "name": &"default",
@@ -15,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gpmc"]
-radius = 14.0
+radius = 29.0
 
 [node name="Sun" type="Area2D" unique_id=952876269]
 collision_layer = 8
@@ -23,7 +24,14 @@ collision_mask = 0
 script = ExtResource("1_fdjia")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=801807591]
+self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_fdjia")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1740655884]
+color = Color(0.1072252, 0.48052078, 0, 1)
+energy = 0.25
+texture = ExtResource("3_6gpmc")
+texture_scale = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1062038317]
 shape = SubResource("CircleShape2D_6gpmc")

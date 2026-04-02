@@ -63,4 +63,3 @@ func collision(body):
 	
 func collisionEnd(_body : Area2D = null):
 	emit_signal("plantEaten", target, self)
-	print("Done eating")

@@ -7,3 +7,4 @@
 y_sort_enabled = true
 script = ExtResource("1_8bppn")
 anim_scene = ExtResource("2_gr1do")
+vanishDelay = 20.0

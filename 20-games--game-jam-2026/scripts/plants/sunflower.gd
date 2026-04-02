@@ -8,7 +8,7 @@ signal plantDestroyed
 func action():
 	# Place the plant!
 	var sunInst = sunScene.instantiate()
-	add_child(sunInst)
+	get_parent().add_child(sunInst)
 	
 	sunInst.global_position = global_position
 	sunInst.clicked.connect(get_parent().sunIncrease)

@@ -19,7 +19,6 @@ func _tryPlacePlant(pos):
 	emit_signal("placePlant", pos)
 
 func changeAnim(id : int, reset : bool = false, _button : TextureButton = null):
-	print(id)
 	if reset:
 		anim.animation = "default"
 	else:

@@ -6,6 +6,10 @@ var fall : bool = false
 var speed : int = 50
 var value : int = 25
 
+func _ready():
+	var tween = create_tween()
+	tween.tween_property($AnimatedSprite2D,"self_modulate:a", 1.0, 0.5)
+
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		sunClicked()
